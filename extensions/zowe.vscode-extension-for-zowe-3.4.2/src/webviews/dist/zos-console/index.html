@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>z/OS Console</title>
+    <style>
+      .vscode-panel {
+        background-color: var(--vscode-editor-background);
+        color: var(--vscode-editor-foreground);
+      }
+      .vscode-panel input,
+      .vscode-panel select,
+      .vscode-panel textarea {
+        background-color: var(--vscode-editor-background);
+        color: var(--vscode-editor-foreground);
+      }
+    </style>
+    <script type="module" crossorigin src="/zos-console/zos-console.js"></script>
+    <link rel="modulepreload" crossorigin href="/ag-grid-react/ag-grid-react.js">
+    <link rel="modulepreload" crossorigin href="/utils/utils.js">
+    <link rel="modulepreload" crossorigin href="/browser/browser.js">
+    <link rel="stylesheet" crossorigin href="/style/style.css">
+  </head>
+  <body>
+    <div id="webviewRoot"></div>
+  </body>
+</html>

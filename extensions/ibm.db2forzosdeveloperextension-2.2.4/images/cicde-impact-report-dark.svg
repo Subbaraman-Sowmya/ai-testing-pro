@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <g id="icon">
+    <rect x="10" y="18" width="8" height="2" style="fill: #fff;"/>
+    <rect x="10" y="13" width="12" height="2" style="fill: #fff;"/>
+    <rect x="10" y="23" width="5" height="2" style="fill: #fff;"/>
+    <path d="M25,5h-3v-1c0-1.1-.9-2-2-2h-8c-1.1,0-2,.9-2,2v1h-3c-1.1,0-2,.9-2,2v21c0,1.1.9,2,2,2h18c1.1,0,2-.9,2-2V7c0-1.1-.9-2-2-2ZM12,4h8v4h-8v-4ZM25,28H7V7h3v3h12v-3h3v21Z" style="fill: #fff;"/>
+    <rect id="_Transparent_Rectangle_" data-name=" Transparent Rectangle " width="32" height="32" style="fill: none;"/>
+  </g>
+</svg>

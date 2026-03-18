@@ -1,0 +1,9 @@
+/*!
+ * Tmp
+ *
+ * Copyright (c) 2011-2017 KARASZI Istvan <github@spam.raszi.hu>
+ *
+ * MIT Licensed
+ */
+
+/*! crc32.js (C) 2014-present SheetJS -- http://sheetjs.com */

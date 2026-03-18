@@ -1,0 +1,136 @@
+{
+	"name": "yaml-with-script",
+	"displayName": "YAML with Script",
+	"description": "A VS Code extension designed for GitLab CI users to analyze and execute shell scripts within YAML files. Highlight issues with ShellCheck diagnostics, run scripts directly from the editor, and streamline your CI pipeline development. Perfect for debugging and optimizing `.gitlab-ci.yml` files.",
+	"icon": "images/icon.png",
+	"version": "1.1.2",
+	"engines": {
+		"vscode": "^1.96.0"
+	},
+	"files": [
+		"images",
+		"html"
+	],
+	"categories": [
+		"Programming Languages",
+		"Linters",
+		"Debuggers",
+		"Other"
+	],
+	"publisher": "matthiesen-technology",
+	"keywords": [
+		"yaml",
+		"gitlab-ci",
+		"shellcheck",
+		"scripts",
+		"ci/cd",
+		"bash",
+		"debugging"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://gitlab.com/matthiesen-technology/yaml-with-script.git"
+	},
+	"bugs": {
+		"url": "https://gitlab.com/matthiesen-technology/yaml-with-script/-/issues"
+	},
+	"homepage": "https://gitlab.com/matthiesen-technology/yaml-with-script",
+	"galleryBanner": {
+		"color": "#ff8400",
+		"theme": "dark"
+	},
+	"activationEvents": [
+		"onLanguage:yaml",
+		"onLanguage:yml"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"grammars": [
+			{
+				"scopeName": "source.yaml.shell-injection",
+				"path": "./syntaxes/yaml-with-script-injection.json",
+				"injectTo": [
+					"source.yaml"
+				]
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"properties": {
+				"yaml-with-script.severity": {
+					"type": "string",
+					"enum": [
+						"error",
+						"warning",
+						"info",
+						"style"
+					],
+					"default": "warning",
+					"description": "Choose one of the options to set the shellcheck severity."
+				},
+				"yaml-with-script.dialect": {
+					"type": "string",
+					"enum": [
+						"sh",
+						"bash",
+						"dash",
+						"ksh",
+						"busybox",
+						"inline"
+					],
+					"default": "bash",
+					"description": "Choose one of the options to set the shellcheck dialect. Use 'inline' for a dialect within the script part (e.g. #!/bin/shell)"
+				},
+				"yaml-with-script.enabled": {
+					"type": "boolean",
+					"default": "true",
+					"description": "Enable/disable scripts in YAML"
+				},
+				"yaml-with-script.baseScript": {
+					"type": "string",
+					"default": "",
+					"description": "This additional script is getting sourced before executing the script from the yaml. Useful for mocking variables, defining functions and preparing the script."
+				},
+				"yaml-with-script.shellcheckFolder": {
+					"type": "string",
+					"default": "",
+					"description": "This is the path to the folder that includes 'shellcheck', e.g. ('/opt/homebrew/bin' will lead to '/opt/homebrew/bin/shellcheck --version')"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm install && rm -rf out && npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src",
+		"test": "rm -rf out && npx tsc -p ./ && vscode-test"
+	},
+	"devDependencies": {
+		"@types/js-yaml": "^4.0.9",
+		"@types/mocha": "^10.0.10",
+		"@types/node": "20.x",
+		"@types/vscode": "^1.96.0",
+		"@typescript-eslint/eslint-plugin": "^8.17.0",
+		"@typescript-eslint/parser": "^8.17.0",
+		"@vscode/test-cli": "^0.0.10",
+		"@vscode/test-electron": "^2.4.1",
+		"eslint": "^9.16.0",
+		"typescript": "^5.7.2"
+	},
+	"dependencies": {
+		"ansi-to-html": "^0.7.2",
+		"prettier": "^3.4.2",
+		"prettier-plugin-sh": "^0.14.0",
+		"terminate": "^2.8.0",
+		"vscode-languageclient": "^9.0.1",
+		"vscode-languageserver": "^9.0.1",
+		"yaml": "^2.6.1"
+	},
+	"__metadata": {
+		"installedTimestamp": 1766131548441,
+		"targetPlatform": "undefined",
+		"size": 14267841
+	}
+}

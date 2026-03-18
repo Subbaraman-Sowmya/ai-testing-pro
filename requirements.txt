@@ -1,0 +1,12 @@
+# --- Core Testing Framework ---
+pytest>=9.0.2
+pytest-json-report>=1.5.0
+pytest-metadata>=3.1.1
+
+# --- Environment & Security ---
+python-dotenv>=1.0.1
+
+# --- AI & Data Handling ---
+# (Add these as we grow your AI Agent)
+# requests>=2.31.0
+# pydantic>=2.6.0

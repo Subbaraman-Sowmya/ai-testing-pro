@@ -1,0 +1,329 @@
+{
+	// Place your snippets for rpgle here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	// See the full snippet syntax description here: https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-syntax
+	"if": {
+		"prefix": "if",
+		"description": "If block",
+		"body": [
+			"if (${1});",
+			"  $0",
+			"endif;"
+		]
+	},
+	"ifelse": {
+		"prefix": "ifelse",
+		"description": "If else block",
+		"body": [
+			"if (${1});",
+			"  $0",
+			"else;",
+			" ",
+			"endif;"
+		]
+	},
+	"dow": {
+		"prefix": "dow",
+		"description": "Do while",
+		"body": [
+			"dow (${1});",
+			"  $0",
+			"enddo;"
+		]
+	},
+	"dou": {
+		"prefix": "dou",
+		"description": "Do until",
+		"body": [
+			"dou (${1});",
+			"  $0",
+			"enddo;"
+		]
+	},
+	"for": {
+		"prefix": "for",
+		"description": "For loop",
+		"body": [
+			"for ${1:index} = ${2:startingValue} ${3|to,downto|} ${4:endingValue};",
+			"  $0",
+			"endfor;"
+		]
+	},
+	"foreach": {
+		"prefix": "foreach",
+		"description": "The FOR-EACH operation begins a group of operations to process the items in the array, sub-array, or %LIST one at a time.",
+		"body": [
+			"for-each ${1:variable} in %list('':'');",
+			"  $0",
+			"endfor;"
+		]
+	},
+	"select": {
+		"prefix": "select",
+		"description": "The SELECT group conditionally processes one of several alternative sequences of operations.",
+		"body": [
+			"select;",
+			"  when (${1});",
+			"    $0",
+			"  other;",
+			"    // handle other conditions",
+			"endsl;"
+		]
+	},
+	"select-operand": {
+		"prefix": "select-operand",
+		"description": "The SELECT with operand group conditionally processes one of several alternative sequences of operations according to the value of the operand.",
+		"body": [
+			"select ${1:operand};",
+			"  when-is (${2:value});",
+			"    ${3:// handle first condition};",
+			"  when-in %list('${4:list-element 1}':'${5:list-element 2}');",
+			"    ${6:// handle second condition};",
+			"  other;",
+			"    ${7:// handle other conditions};",
+			"endsl;"
+		]
+	},
+	"variable": {
+		"prefix": "dcl-s",
+		"description": "Declare variable",
+		"body": "dcl-s ${1:name} ${2|char,varchar,zoned,packed,ind,int,uns,like|}(${3:length}) ${4:keywords};$0"
+	},
+	"constant": {
+		"prefix": "dcl-c",
+		"description": "Declare constant",
+		"body": "dcl-c ${1:name} ${2:value};$0"
+	},
+	"struct": {
+		"prefix": "dcl-ds",
+		"description": "Declare structure",
+		"body": [
+			"dcl-ds ${1:name} ${2|qualified,likeds()|} ${3|dim,template|}${4};",
+			"  $0",
+			"end-ds;"
+		]
+	},
+	"struct-external": {
+		"prefix": "dcl-ds-ext",
+		"description": "Declare external structure",
+		"body": [
+			"dcl-ds ${1:name} ExtName('${2:object}') qualified;",
+			"end-ds;",
+			"$0"
+		]
+	},
+	"enumeration": {
+		"prefix": "dcl-enum",
+		"description": "Declare enumeration",
+		"body": [
+			"dcl-enum ${1:name} ${2:qualified};",
+			"  ${3:CONSTANT1} ${4:value1};",
+			"  ${5:CONSTANT2} ${6:value2};",
+			"end-enum;",
+			"$0",
+		]
+	},
+	"prototype": {
+		"prefix": "dcl-pr",
+		"body": [
+			"dcl-pr $1 extpgm('$2');",
+			"\t$3;",
+			"end-pr;",
+			"$4"
+		],
+		"description": "Create prototype for external program"
+	},
+	"procedure interface": {
+		"prefix": "dcl-pi",
+		"body": [
+			"dcl-pi *n ;",
+			"end-pi;",
+			"$0"
+		],
+		"description": "Create procedure interface"
+	},
+	"procedure": {
+		"prefix": "dcl-proc",
+		"body": [
+			"dcl-proc $1;",
+			"\tdcl-pi *n ;",
+			"\tend-pi;",
+			"  $0",
+			"end-proc;",
+			"$4"
+		],
+		"description": "Create prototype for external program"
+	},
+	"subroutine": {
+		"prefix": "begsr",
+		"body": [
+			"begsr $1;",
+			"  $0",
+			"endsr;"
+		],
+		"description": "Create subroutine."
+	},
+	"monitor": {
+		"prefix": "monitor",
+		"body": [
+			"monitor;",
+			"on-excp '';",
+			"on-error;",
+			"endmon;"
+		],
+		"description": "The monitor group performs conditional error handling based on the exception message or status code."
+	},
+	"snd-msg": {
+		"prefix": "snd-msg",
+		"body": [
+			"snd-msg ${1|*COMP,*DIAG,*ESCAPE,*INFO,*NOTIFY,*STATUS|} ${2:%target(${3|*CALLER,*CTLBDY,*EXT,*PGMBDY,*SELF,program-or-procedure|})) };"
+		],
+		"description": "The SND-MSG operation sends an informational message or an exception message. The message can be sent to any procedure on the call stack, including the current procedure. The message appears in the joblog after it is sent."
+	},
+	"sql-cursor-loop": {
+		"prefix": "sql-cursor-loop",
+		"description": "SQL cursor loop",
+		"scope": "rpgle",
+		"body": [
+			"dcl-ds $3 extname('$3') alias qualified;",
+			"end-ds;",
+			"",
+			"EXEC SQL",
+			"  DECLARE $1 CURSOR FOR",
+			"    SELECT $2 FROM $3",
+			"    // WHERE  field = :code",
+			"EXEC SQL",
+			"  OPEN $1;",
+			"//really should check SQLSTATE here too!",
+			"",
+			"EXEC SQL",
+			"  FETCH NEXT FROM $1 INTO $4;",
+			"",
+			"dow SQLSTATE = '00000';",
+			"  //note 00000 = no errors or warning",
+			"  //     02000 = no data",
+			"  // <do somthing?>",
+			"  EXEC SQL",
+			"      FETCH NEXT FROM $1 INTO $4;",
+			"enddo;",
+			"",
+			"EXEC SQL",
+			"  CLOSE $1;",
+		]
+	},
+	"File definition": {
+		"prefix": "dcl-f",
+		"description": "File definition statement",
+		"body": [
+			"dcl-f ${1:name} usage(${2|*input,*output,*update,*delete|}) keyed;",
+		]
+	},
+	"workstation-basics": {
+		"prefix": "workstation-basics",
+		"description": "The basic definitions for a display file with a subfield",
+		"scope": "rpgle",
+		"body": [
+			"dcl-f ${1:displayfile} workstn sfile(SFLDta:Rrn) indds(WkStnInd) infds(fileinfo);",
+			"",
+			"dcl-s Rrn          zoned(4:0) inz;",
+			"",
+			"dcl-ds WkStnInd;",
+			"  ProcessSCF     ind        pos(21);",
+			"  ReprintScf     ind        pos(22);",
+			"  Error          ind        pos(25);",
+			"  PageDown       ind        pos(30);",
+			"  PageUp         ind        pos(31);",
+			"  SflEnd         ind        pos(40);",
+			"  SflBegin       ind        pos(41);",
+			"  NoRecord       ind        pos(60);",
+			"  SflDspCtl      ind        pos(85);",
+			"  SflClr         ind        pos(75);",
+			"  SflDsp         ind        pos(95);",
+			"end-ds;",
+			"",
+			"dcl-ds FILEINFO;",
+			"  FUNKEY         char(1)    pos(369);",
+			"end-ds;",
+		]
+	},
+	"workstation-function-keys": {
+		"prefix": "workstation-function-keys",
+		"description": "Function key constants for display files",
+		"scope": "rpgle",
+		"body": [
+			"dcl-c F01        x'31';",
+			"dcl-c F02        x'32';",
+			"dcl-c F03        x'33';",
+			"dcl-c F04        x'34';",
+			"dcl-c F05        x'35';",
+			"dcl-c F06        x'36';",
+			"dcl-c F07        x'37';",
+			"dcl-c F08        x'38';",
+			"dcl-c F09        x'39';",
+			"dcl-c F10        x'3A';",
+			"dcl-c F11        x'3B';",
+			"dcl-c F12        x'3C';",
+			"dcl-c F13        x'B1';",
+			"dcl-c F14        x'B2';",
+			"dcl-c F15        x'B3';",
+			"dcl-c F16        x'B4';",
+			"dcl-c F17        x'B5';",
+			"dcl-c F18        x'B6';",
+			"dcl-c F19        x'B7';",
+			"dcl-c F20        x'B8';",
+			"dcl-c F21        x'B9';",
+			"dcl-c F22        x'BA';",
+			"dcl-c F24        x'BC';",
+			"dcl-c ENTER      x'F1';",
+			"dcl-c HELP       x'F3';",
+			"dcl-c PRINT      x'F6';",
+		]
+	},
+	"data-gen-options": {
+		"prefix": "data-gen-options",
+		"body": [
+			"countprefix=${1:prefix of subfield} doc=${2|string,file|} fileccsid=${3|utf8,utf16,job, ccsid number|} name=${4:name of top level document) output=${5|append,clear,continue|} renameprefix=${6:prefix of subfield} trim=${9|all,none|}"
+		],
+		"description": "Data gen Options"
+	},
+	"data-into-options": {
+		"prefix": "data-into-options",
+		"body": [
+			"allowextra=${1|no,yes|} allowmissing=${2|no,yes|} case=${3|lower,upper,any,convert|} ccsid=${4|best,job,ucs2,ccsid|} countprefix=${5:prefix of subfield} datasubf=${6:subfield} doc=${7|string,file|} path=${8:path in document with forward slash seperator} trim=${9|all,none|}"
+		],
+		"description": "Data into Options"
+	},
+	"xml-into-options": {
+		"prefix": "xml-into-options",
+		"body": [
+			"allowextra=${1|no,yes|} allowmissing=${2|no,yes|} case=${3|lower,upper,any,convert|} ccsid=${4|best,job,ucs2,ccsid|} countprefix=${5:prefix of subfield} datasubf=${6:subfield} doc=${7|string,file|} ns=${8|keep,remove,merge|} nsprefix=${9:namespace} path=${10:path in document with forward slash seperator} trim=${11|all,none|}"
+		],
+		"description": "XML into Options"
+	},
+	"Main": {
+		"prefix": "main",
+		"body": [
+			"**FREE",
+			"Ctl-Opt Main(${1:${TM_FILENAME_BASE/([^\\.]+).*/${1:/upcase}/}});",
+			"",
+			"Dcl-Proc $1;",
+			"  Dcl-Pi *N;",
+			"  End-Pi;",
+			"",
+			"  $0",
+			"End-Proc;"
+		],
+		"description": "No cycle RPGLE program template"
+	}
+}

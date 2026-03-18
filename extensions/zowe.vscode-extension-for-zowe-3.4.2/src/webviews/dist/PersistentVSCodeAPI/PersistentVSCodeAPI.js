@@ -1,0 +1,1 @@
+var a=Object.defineProperty;var i=(e,s,t)=>s in e?a(e,s,{enumerable:!0,configurable:!0,writable:!0,value:t}):e[s]=t;var c=(e,s,t)=>i(e,typeof s!="symbol"?s+"":s,t);class o{static getVSCodeAPI(){return this.vscodeAPI}}c(o,"vscodeAPI",acquireVsCodeApi());export{o as P};
